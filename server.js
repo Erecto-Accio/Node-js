@@ -1,10 +1,11 @@
 const http = require("http");
-
+const fs = require("fs");
 const server = http.createServer((req, res) => {
   const url = req.url;
   const method = req.method;
 
   if (url === "/message" && method === "POST") {
+    fs.writeFileSync("message.txt", "Dummy!!!");
     res.write(
       `<html>
     <head>
@@ -13,6 +14,7 @@ const server = http.createServer((req, res) => {
     <body>
     <h1>Redirect Page</h1>
     <h2> Welcome to the redirected page</h2>
+    <h1 style="color:red">Check Message.txt</h1>
     </body>
     </html > `
     );
