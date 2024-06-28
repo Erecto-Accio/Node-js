@@ -1,7 +1,8 @@
-Install nodemon to run the server all the time . Instead of using node file.js . Nodemon saves time and also saves our time so much. 
+*Install nodemon to run the server all the time . Instead of using node file.js . Nodemon saves time and also saves our time so much.*
 
-First of all type : npm init -y // adds package.json file where all the installed modules listed with version . {{ package-lock.json just locked the module version so future any upcoming update will not destroy our code }}
+* First of all type : npm init -y // adds package.json file where all the installed modules listed with version . 
+** // {{ package-lock.json just locked the module version so future any upcoming update will not destroy our code }} ** //
 
-Open your terminal and type : npm install -g nodemon {{ to install nodemon globally}}
+// Open your terminal and type : npm install -g nodemon {{ to install nodemon globally}}
 or,
-development time : npm install --save-dev nodemon
+// development time : npm install --save-dev nodemon
