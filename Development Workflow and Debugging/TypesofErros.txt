@@ -1,0 +1,40 @@
+When working with node js we can encounter three types of errors;
+1. Syntax errors
+2. Runtime errors
+3. Logical errors
+
+// SYNTAX ERROR 
+
+const http = require("http");
+
+// error
+cont server = http.createServer((req, res) => {
+  res.write("<h1>Hello World</h1>");
+  res.end();
+});
+
+cons PORT = 3000; // error
+
+server.listen(PORT, () => {
+  console.log(`Listening to port ${PORT}`);
+});
+
+
+
+
+/// Runtime error
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+
+
+
+// LOGICAL
+return req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split("=")[0]; 
+                                                ******* HERE WE NEED TO TAKE THE SECOND INDEX ELEMENT BUT WE GOT FIRST INDEX***********
+      fs.writeFile("message.txt", message, (err) => {
+        res.statusCode = 302;
+        res.setHeader("Location", "/confirmation");
+        return res.end();
+      });
+    });
