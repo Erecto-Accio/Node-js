@@ -1,39 +1,74 @@
 const http = require("http");
 const fs = require("fs");
+
 const server = http.createServer((req, res) => {
   const url = req.url;
   const method = req.method;
 
   if (url === "/") {
-    res.write(`<html>
-      <head>
-      <title>Welcome Page</title>
-      </head>
-      <body>
-      <form action="/message" method="POST">
-      <input type="text" name="message" />
-      <button type="submit">Submit</button>
-      </form>
-      </body>
+    res.setHeader("Content-Type", "text/html");
+    res.write(`
+      <html>
+        <head>
+          <title>Welcome Page</title>
+        </head>
+        <body>
+          <form action="/message" method="POST">
+            <input type="text" name="message" />
+            <button type="submit">Submit</button>
+          </form>
+        </body>
       </html>
-      `);
+    `);
     return res.end();
   }
 
   if (url === "/message" && method === "POST") {
-    fs.writeFileSync("message.txt", "Dummy!!!");
-    res.statusCode = 302;
-    res.setHeader("Location", "/");
+    const body = [];
+
+    req.on("data", (chunk) => {
+      body.push(chunk);
+    });
+
+    return req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split("=")[1];
+      fs.writeFileSync("message.txt", message);
+      res.statusCode = 302;
+      res.setHeader("Location", "/confirmation");
+      return res.end();
+    });
+  }
+
+  if (url === "/confirmation") {
+    res.setHeader("Content-Type", "text/html");
+    res.write(`
+      <html>
+        <head>
+          <title>Confirmation Page</title>
+        </head>
+        <body>
+          <h1>Message Saved!</h1>
+          <p>Your message has been saved successfully.</p>
+          <a href="/">Go back</a>
+        </body>
+      </html>
+    `);
     return res.end();
   }
+
   res.setHeader("Content-Type", "text/html");
-  res.write(`<html> 
-    <head><title>Intro page</title></head>
-    <body>
-     <h1>Welcome page</h1>
-      <h2>Tousif Tasrik </h2>
+  res.write(`
+    <html>
+      <head>
+        <title>Intro page</title>
+      </head>
+      <body>
+        <h1>Welcome page</h1>
+        <h2>Tousif Tasrik</h2>
       </body>
-      </html>`);
+    </html>
+  `);
   res.end();
 });
 
