@@ -9,7 +9,7 @@ const adminRouter = require("./routes/admin");
 // shop routes
 const shopRouter = require("./routes/shop");
 
-app.use(adminRouter);
+app.use("/admin", adminRouter);
 app.use(shopRouter);
 
 app.use((req, res, next) => {
