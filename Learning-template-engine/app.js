@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // adminRoutes
-const adminRouter = require("./routes/admin");
+const adminData = require("./routes/admin");
 
 // shop routes
 const shopRouter = require("./routes/shop");
@@ -16,7 +16,7 @@ const shopRouter = require("./routes/shop");
 // Root Directory
 const rootDir = require("./util/helper");
 
-app.use("/admin", adminRouter);
+app.use("/admin", adminData.routes);
 app.use(shopRouter);
 
 app.use((req, res, next) => {
