@@ -1,6 +1,11 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+
+// setting up the template engine
+app.set("view engine", "pug");
+app.set("views", "views");
+
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
