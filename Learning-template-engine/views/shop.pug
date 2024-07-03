@@ -3,7 +3,7 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Shop
+        title #{docTitle}
         link(rel="stylesheet", href="/css/shop.css")
     body 
         header
@@ -13,3 +13,26 @@ html(lang="en")
                         a(href="/shop") Shop 
                     li
                         a(href="/admin/add-product") Add Product
+        main
+            h1 Welcome to my shop
+            if product.length > 0
+                each prod in product 
+                    div.group
+                        div.card
+                            img(src="https://media.istockphoto.com/id/173015527/photo/a-single-red-book-on-a-white-surface.jpg?s=612x612&w=0&k=20&c=AeKmdZvg2_bRY2Yct7odWhZXav8CgDtLMc_5_pjSItY=" alt="book-img" wdith="200" height="200")
+                        div.card-content
+                            h2 #{prod.title}
+                            p Product description goes here. Briefly describe the product features.
+                            button Buy Now
+            else 
+                h1 No products found
+                
+
+//- <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Product Image" />
+      <div class="card-content">
+        <h2>Product Title</h2>
+        <p></p>
+        <button>Buy Now</button>
+      </div>
+    </div>

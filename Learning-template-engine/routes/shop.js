@@ -5,8 +5,8 @@ const rootDir = require("../util/helper");
 const adminData = require("./admin");
 
 router.get("/shop", (req, res) => {
-  con;
-  res.render("shop");
+  const products = adminData.products;
+  res.render("shop", { product: products, docTitle: "Book Shop" });
 });
 
 module.exports = router;
